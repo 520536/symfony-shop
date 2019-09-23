@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    {% for row in products|batch(3) %}
+    <div class="card-deck">
+        {% for product in row %}
+        <div class="card" style="width: 18rem;">
+            <img alt="..." class="card-img-top" src="{{product.url256}}">
+            <div class="card-body">
+                <h5 class="card-title text-primary">{{product.name}} {{product.subname}}
+                    <strong>${{product.price}}</strong>
+                </h5>
+                <p class="card-text">{{product.description}}</p>
+                <a class="btn btn-warning" href="{{path('add-to-cart',{id:product.id})}}">Add to cart</a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% endfor %}
+{% endblock %}
+
